@@ -1,14 +1,16 @@
 {
 	"name": "autoprint-mono",
-	"module": "index.ts",
 	"type": "module",
+	"workspaces": ["packages/*"],
 	"scripts": {
+		"db:push": "bunx drizzle-kit push",
 		"check": "bunx biome check --write",
 		"precommit:install": "bunx lefthook install"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/bun": "latest",
+		"drizzle-kit": "^0.28.1",
 		"lefthook": "^1.8.4"
 	},
 	"peerDependencies": {
