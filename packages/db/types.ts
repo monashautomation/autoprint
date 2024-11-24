@@ -15,6 +15,7 @@ export const insertPrinterSchema = createInsertSchema($printers).pick({
 	cameraUrl: true,
 });
 export const updatePrinterSchema = createInsertSchema($printers).pick({
+	name: true,
 	api: true,
 	url: true,
 	apiKey: true,

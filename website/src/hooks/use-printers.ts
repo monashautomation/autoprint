@@ -1,7 +1,8 @@
 import axios from "axios";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
-import type { Job, Printer } from "@autoprint/db";
+import type { Job, Printer, UpdatePrinter } from "@autoprint/db";
+import { useCallback } from "react";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -32,6 +33,8 @@ export function usePrinters() {
 }
 
 export function usePrinter(id: number | string) {
+	const { mutate } = useSWRConfig();
+
 	const {
 		data: printer,
 		isLoading,
@@ -42,8 +45,18 @@ export function usePrinter(id: number | string) {
 		return resp.data;
 	});
 
+	const updatePrinter = useCallback(
+		async (data: UpdatePrinter) => {
+			await apiClient.put(`/api/v1/printers/${id}`, data);
+			await mutate("/api/v1/printers");
+			await mutate(`/api/v1/printers/${id}`);
+		},
+		[id, mutate],
+	);
+
 	return {
 		printer,
+		updatePrinter,
 		isLoading,
 		error,
 	};

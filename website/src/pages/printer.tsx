@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { z } from "zod";
 
 import { PrinterCard } from "@/components/printer/card";
+import { EditPrinter } from "@/components/printer/edit.tsx";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -37,7 +38,9 @@ export function PrinterPage() {
 				<div className="flex justify-between items-center">
 					<h2 className="font-semibold text-2xl">{printer.name}</h2>
 					<div>
-						<Button>Edit</Button>
+						<EditPrinter printer={printer}>
+							<Button>Edit</Button>
+						</EditPrinter>
 					</div>
 				</div>
 				<div className="grid lg:grid-cols-2 gap-4 h-2/5">
