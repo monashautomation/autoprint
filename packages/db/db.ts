@@ -49,7 +49,13 @@ export async function updatePrinterById(
 	id: number,
 	data: UpdatePrinter,
 ): Promise<void> {
-	await db.update($printers).set(data).where(eq($printers.id, id));
+	await db
+		.update($printers)
+		.set({
+			...data,
+			updateAt: new Date(),
+		})
+		.where(eq($printers.id, id));
 }
 
 export async function deletePrinterById(id: number): Promise<void> {
@@ -86,7 +92,13 @@ export async function updateJobById(
 	id: number,
 	data: UpdateJob,
 ): Promise<void> {
-	await db.update($jobs).set(data).where(eq($jobs.id, id));
+	await db
+		.update($jobs)
+		.set({
+			...data,
+			updateAt: new Date(),
+		})
+		.where(eq($jobs.id, id));
 }
 
 export async function deleteJobById(id: number): Promise<void> {
