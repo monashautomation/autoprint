@@ -1,5 +1,20 @@
 # AutoPrint
 
+## Features
+
+- [x] Monitor printer status and job status
+- [x] Persist new jobs once submitted on printers
+- [x] Synchronize status changes of persisted jobs
+- [x] Edit printers
+- [ ] Submit printing job
+    - [ ] Auth (Clerk)
+    - [ ] GCode file storage (`100KB` <= files size <= `20MB`)
+- [ ] Simple job scheduler for automatically job execution
+    - [ ] Use round-robin to select printers
+    - [ ] Use FIFO to select jobs
+- [ ] Support OctoPrint API
+    - [ ] Migrate logic from legacy code
+
 ## Quickstart
 
 ### Install Bun
