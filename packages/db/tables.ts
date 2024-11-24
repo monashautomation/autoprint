@@ -4,7 +4,6 @@ import {
 	pgTable,
 	serial,
 	timestamp,
-	uuid,
 	varchar,
 } from "drizzle-orm/pg-core";
 
@@ -41,7 +40,7 @@ export const jobStatusEnum = pgEnum("job_status", [
 
 export const $jobs = pgTable("jobs", {
 	id: serial().primaryKey(),
-	orderId: uuid("order_id"),
+	orderId: integer("order_id"),
 	printerId: integer("printer_id").notNull(),
 	localId: varchar("local_id", { length: 128 }).notNull(),
 	status: jobStatusEnum().notNull(),
