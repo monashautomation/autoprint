@@ -8,6 +8,8 @@ export type PrinterVariables = {
 	printer: Printer;
 };
 
+const printerIdSchema = z.coerce.number();
+
 // Validate printer id from path variable or query params.
 export const validatePrinterId = ({ from }: { from: "query" | "param" }) =>
 	createMiddleware<{
@@ -16,7 +18,7 @@ export const validatePrinterId = ({ from }: { from: "query" | "param" }) =>
 		const printerId =
 			from === "param" ? c.req.param("printerId") : c.req.query("printerId");
 
-		const printer = await findPrinterById(z.number().parse(printerId));
+		const printer = await findPrinterById(printerIdSchema.parse(printerId));
 
 		if (!printer) {
 			throw new HTTPException(404, { message: "Printer not found." });

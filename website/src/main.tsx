@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 
 import "./index.css";
 
+import { SidebarLayout } from "@/layouts/sidebar";
 import { DashboardPage } from "@/pages/dashboard";
 
 const root = document.getElementById("root");
@@ -13,7 +14,9 @@ if (root) {
 		<StrictMode>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" index element={<DashboardPage />} />
+					<Route path="/" element={<SidebarLayout />}>
+						<Route index path="/" element={<DashboardPage />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</StrictMode>,
