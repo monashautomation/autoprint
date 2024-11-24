@@ -60,8 +60,10 @@ export async function getJobs(): Promise<Job[]> {
 	return db.select().from($jobs);
 }
 
-export async function createJob(job: NewJob): Promise<void> {
-	await db.insert($jobs).values(job);
+export async function createJob(job: NewJob): Promise<Job> {
+	const inserted = await db.insert($jobs).values(job).returning();
+
+	return inserted[0];
 }
 
 export async function findJobById(id: number): Promise<Job | null> {

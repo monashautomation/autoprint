@@ -15,7 +15,6 @@ export const insertPrinterSchema = createInsertSchema($printers).pick({
 	cameraUrl: true,
 });
 export const updatePrinterSchema = createInsertSchema($printers).pick({
-	id: true,
 	api: true,
 	url: true,
 	apiKey: true,
@@ -28,11 +27,13 @@ export const insertJobSchema = createInsertSchema($jobs).omit({
 	id: true,
 	createAt: true,
 	updateAt: true,
+	endAt: true,
 });
 export const updateJobSchema = createInsertSchema($jobs).pick({
 	id: true,
 	status: true,
 	secondsLeft: true,
+	progress: true,
 	endAt: true,
 });
 
