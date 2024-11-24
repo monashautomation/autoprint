@@ -31,6 +31,24 @@ export function usePrinters() {
 	};
 }
 
+export function usePrinter(id: number | string) {
+	const {
+		data: printer,
+		isLoading,
+		error,
+	} = useSWR(`/api/v1/printers/${id}`, async (url: string) => {
+		const resp = await apiClient.get<Printer>(url);
+
+		return resp.data;
+	});
+
+	return {
+		printer,
+		isLoading,
+		error,
+	};
+}
+
 export type PrinterStatus = {
 	state: string;
 	job: Job | null;
@@ -42,14 +60,14 @@ export type PrinterStatus = {
 	};
 };
 
-export function usePrinterStatus(printerId: number) {
+export function usePrinterStatus(printerId: number | string) {
 	const {
 		data: status,
 		isLoading,
 		error,
 	} = useSWR(
 		`/api/v1/printers/${printerId}/status`,
-		async (url) => {
+		async (url: string) => {
 			const resp = await apiClient.get<PrinterStatus>(url);
 
 			return resp.data;

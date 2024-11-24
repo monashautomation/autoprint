@@ -4,9 +4,13 @@ import {
 	CircleHelp,
 	Clock,
 	File,
+	KeyRound,
+	Link as LinkIcon,
 	MoveDownRight,
 	MoveUpRight,
+	Tag,
 	Thermometer,
+	Video,
 } from "lucide-react";
 import type {
 	ComponentProps,
@@ -62,11 +66,17 @@ const printerCardVariants = cva("bg-gradient-to-br", {
 
 export type PrinterCardProps = ComponentProps<typeof Card> & {
 	printer: Printer;
+	title?: string;
+	showPrinterInfo?: boolean;
+	showCamera?: boolean;
 };
 
 export function PrinterCard({
 	printer,
 	className,
+	title,
+	showCamera = true,
+	showPrinterInfo = false,
 	...props
 }: PrinterCardProps) {
 	const { status, isLoading, error } = usePrinterStatus(printer.id);
@@ -103,7 +113,7 @@ export function PrinterCard({
 		>
 			<CardHeader className="py-4">
 				<div className="flex flex-row justify-between items-center">
-					<span className="font-semibold">{printer.name}</span>
+					<span className="font-semibold">{title ?? printer.name}</span>
 					<div className="flex gap-4">
 						<span className="font-semibold">{state}</span>
 						{status.job && <span>{status.job.progress.toFixed(0)}%</span>}
@@ -111,7 +121,26 @@ export function PrinterCard({
 				</div>
 			</CardHeader>
 			<CardContent className="grid gap-3">
-				<div className="grid items-center lg:grid-cols-2 gap-2">
+				<div className="grid items-center lg:grid-cols-2 gap-3">
+					{showPrinterInfo && (
+						<>
+							<Status label="URL" Icon={LinkIcon}>
+								{printer.url}
+							</Status>
+
+							<Status label="Camera URL" Icon={Video}>
+								{printer.cameraUrl ?? "NA"}
+							</Status>
+
+							<Status label="API" Icon={Tag}>
+								{printer.api}
+							</Status>
+
+							<Status label="API Key" Icon={KeyRound}>
+								{printer.apiKey ?? "NA"}
+							</Status>
+						</>
+					)}
 					<TemperatureStatus
 						label="Bed"
 						actual={status.temperature?.bed}
@@ -128,12 +157,14 @@ export function PrinterCard({
 					<JobFile filename={status.job?.filePath} />
 				</div>
 
-				<div className="w-full min-h-[100px] rounded-xl overflow-hidden">
-					<img
-						src={`${printer.cameraUrl}?action=stream`}
-						alt={`camera of ${printer.name}`}
-					/>
-				</div>
+				{showCamera && (
+					<div className="w-full min-h-[100px] rounded-xl overflow-hidden">
+						<img
+							src={`${printer.cameraUrl}?action=stream`}
+							alt={`camera of ${printer.name}`}
+						/>
+					</div>
+				)}
 			</CardContent>
 		</Card>
 	);
@@ -152,14 +183,14 @@ function formatFilename(name: string): string {
 function JobFile({ filename }: { filename?: string | null }) {
 	if (isNil(filename)) {
 		return (
-			<Status label="GCode File" Icon={File}>
+			<Status label="Job File" Icon={File}>
 				NA
 			</Status>
 		);
 	}
 
 	return (
-		<Status label="GCode File" Icon={File}>
+		<Status label="Job File" Icon={File}>
 			<TooltipProvider>
 				<Tooltip>
 					<TooltipTrigger className="flex flex-row gap-1 items-center">

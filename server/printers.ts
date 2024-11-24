@@ -19,6 +19,10 @@ app.get("/", async (c) => {
 	return c.json(printers);
 });
 
+app.get("/:printerId", validatePrinterId({ from: "param" }), async (c) => {
+	return c.json(c.var.printer);
+});
+
 app.get(
 	"/:printerId/status",
 	validatePrinterId({ from: "param" }),
