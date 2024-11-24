@@ -1,9 +1,11 @@
 {
 	"name": "autoprint-mono",
 	"type": "module",
-	"workspaces": ["packages/*", "server"],
+	"workspaces": ["packages/*", "server", "website"],
 	"scripts": {
 		"server:dev": "bun run --hot server/index.ts",
+		"website:dev": "cd website && bun run dev",
+		"website:build": "cd website && bun run build",
 		"db:push": "bunx drizzle-kit push",
 		"check": "bunx biome check --write",
 		"precommit:install": "bunx lefthook install"
