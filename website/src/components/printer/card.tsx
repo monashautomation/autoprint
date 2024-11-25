@@ -198,7 +198,7 @@ function JobFile({ filename }: { filename?: string | null }) {
 						<CircleHelp className="w-3 h-3" />
 					</TooltipTrigger>
 					<TooltipContent>
-						<p>Add to library</p>
+						<p>{filename}</p>
 					</TooltipContent>
 				</Tooltip>
 			</TooltipProvider>
