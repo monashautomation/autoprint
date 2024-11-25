@@ -15,6 +15,10 @@
 - [ ] Support OctoPrint API
     - [ ] Migrate logic from legacy code
 
+## Deploy
+
+Please follow instructions [here](./docs/deploy.md)
+
 ## Quickstart
 
 ### Install Bun
