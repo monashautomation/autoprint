@@ -44,7 +44,7 @@ Go ahead with an existing Postgres database or create a new database container u
 
 ```shell
 docker run -d --name autoprint-db -p 5432:5432 \
-  -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin \
+  -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=printing \
   -v /var/lib/autoprint/postgresql/data:/var/lib/postgresql/data \
   --restart unless-stopped \
   postgres
