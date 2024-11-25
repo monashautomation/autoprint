@@ -114,7 +114,7 @@ export function PrinterCard({
 			<CardHeader className="py-4">
 				<div className="flex flex-row justify-between items-center">
 					<span className="font-semibold">{title ?? printer.name}</span>
-					<div className="flex gap-4">
+					<div className="flex gap-2">
 						<span className="font-semibold">{state}</span>
 						{status.job && <span>{status.job.progress.toFixed(0)}%</span>}
 					</div>
