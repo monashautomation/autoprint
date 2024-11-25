@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { z } from "zod";
 
 import { PrinterCard } from "@/components/printer/card";
-import { EditPrinter } from "@/components/printer/edit.tsx";
+import { EditPrinter } from "@/components/printer/edit";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -58,8 +58,8 @@ export function PrinterPage() {
 						/>
 					</Card>
 				</div>
-				<Card className="h-full bg-gray-50 flex justify-center items-center">
-					<span className="text-gray-600">Work in progress</span>
+				<Card className="h-full bg-secondary flex justify-center items-center">
+					<span className="text-muted-foreground">Work in progress</span>
 				</Card>
 			</main>
 		</>

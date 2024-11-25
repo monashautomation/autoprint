@@ -53,10 +53,14 @@ function parseStateVariant(
 const printerCardVariants = cva("bg-gradient-to-br", {
 	variants: {
 		state: {
-			offline: "from-gray-200/60 via-gray-50 to-gray-200/50",
-			printing: "from-blue-200/60 via-blue-50 to-blue-200/50",
-			ready: "from-green-200/60 via-green-50 to-green-200/50",
-			error: "from-red-200/60 via-red-50 to-red-200/50",
+			offline:
+				"from-gray-200/60 via-gray-50 to-gray-200/50 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800",
+			printing:
+				"from-blue-200/60 via-blue-50 to-blue-200/50 dark:from-blue-600 dark:via-blue-700 dark:to-indigo-600",
+			ready:
+				"from-green-200/60 via-green-50 to-green-200/50 dark:from-emerald-600 dark:via-green-700 dark:to-emerald-800",
+			error:
+				"from-red-200/60 via-red-50 to-red-200/50 dark:from-red-500 dark:via-rose-500 dark:to-red-600",
 		},
 	},
 	defaultVariants: {
@@ -259,7 +263,7 @@ function Status<P extends object>({
 			<Icon className="w-4 h-4" />
 			<div className="text-sm">
 				<span className="font-medium">{label}</span>
-				<div className="text-gray-600">{children}</div>
+				<div className="text-foreground">{children}</div>
 			</div>
 		</div>
 	);

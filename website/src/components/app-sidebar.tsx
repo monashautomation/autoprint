@@ -89,11 +89,7 @@ export function AppSidebar() {
 				<SidebarGroup />
 			</SidebarContent>
 
-			<SidebarFooter>
-				<SidebarMenu>
-					<SidebarMenuItem>{/*<UserProfile />*/}</SidebarMenuItem>
-				</SidebarMenu>
-			</SidebarFooter>
+			<SidebarFooter>{/*<SidebarMenu></SidebarMenu>*/}</SidebarFooter>
 		</Sidebar>
 	);
 }
