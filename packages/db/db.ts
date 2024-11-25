@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
 
 import { $jobs, $printers } from "./tables";
@@ -23,7 +23,7 @@ export async function createPrinter(printer: NewPrinter): Promise<void> {
 }
 
 export async function getPrinters(): Promise<Printer[]> {
-	return db.select().from($printers);
+	return db.select().from($printers).orderBy(asc($printers.name));
 }
 
 export async function findPrinterById(id: number): Promise<Printer | null> {
